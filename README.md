@@ -19,8 +19,6 @@ Built for the Bitget AI Hackathon.
 
 ## Screenshots
 
-Add screenshots after deployment:
-
 <img width="1917" height="800" alt="image" src="https://github.com/user-attachments/assets/cd46f7bd-1e55-4d91-8c4a-15835aaceecc" />
 <img width="1919" height="803" alt="image" src="https://github.com/user-attachments/assets/eb2b54fa-6d8c-40ab-b798-ca53d71c008a" />
 <img width="1917" height="798" alt="image" src="https://github.com/user-attachments/assets/c7475d61-bea5-493f-a77f-c992e56d04d3" />
@@ -170,8 +168,6 @@ src/
   types/
 docs/
 ```
-
-## Deployment Instructions
 
 ## Backend Documentation
 
