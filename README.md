@@ -21,10 +21,12 @@ Built for the Bitget AI Hackathon.
 
 Add screenshots after deployment:
 
-- `docs/screenshots/landing.png`
-- `docs/screenshots/dashboard.png`
-- `docs/screenshots/event-detail.png`
-- `docs/screenshots/ask-alpha.png`
+<img width="1917" height="800" alt="image" src="https://github.com/user-attachments/assets/cd46f7bd-1e55-4d91-8c4a-15835aaceecc" />
+<img width="1919" height="803" alt="image" src="https://github.com/user-attachments/assets/eb2b54fa-6d8c-40ab-b798-ca53d71c008a" />
+<img width="1917" height="798" alt="image" src="https://github.com/user-attachments/assets/c7475d61-bea5-493f-a77f-c992e56d04d3" />
+<img width="1919" height="800" alt="image" src="https://github.com/user-attachments/assets/cf1178eb-36b6-4398-8e49-c1953cf8d17e" />
+<img width="1919" height="807" alt="image" src="https://github.com/user-attachments/assets/7d9d8817-f65e-42a8-b3e0-c8a8eccc7f4f" />
+
 
 ## Tech Stack
 
@@ -90,7 +92,7 @@ Copy `.env.example` to `.env.local` when adding real integrations:
 
 ```bash
 NEXT_PUBLIC_APP_NAME=Alpha Radar
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=https://alpha-radar-eta.vercel.app/
 NEXT_PUBLIC_ENABLE_MOCK_STREAMING=true
 NEXT_PUBLIC_ANALYTICS_DISABLED=true
 AI_PROVIDER=openai
@@ -103,7 +105,7 @@ COINGECKO_API_KEY=
 CRYPTOPANIC_API_KEY=
 ```
 
-The app works immediately without API keys. Missing or failing providers return realistic fallback data so the hackathon demo remains stable.
+The app works immediately without API keys. Missing or failing providers return realistic fallback data so the demo remains stable.
 
 ## Quality Commands
 
@@ -136,7 +138,7 @@ The AI provider can switch between OpenAI, OpenRouter, Gemini, and DeepSeek via 
 - Real streaming AI responses
 - Alert delivery through email, Telegram, Discord, and web push
 
-## Hackathon Submission Notes
+## Submission Notes
 
 Alpha Radar is designed to show a complete product experience, not only a UI mockup. Every page works with typed mock data, and the architecture makes the path to live data clear.
 
@@ -170,16 +172,6 @@ docs/
 ```
 
 ## Deployment Instructions
-
-Vercel is the recommended deployment target:
-
-```bash
-npm install
-npm run build
-vercel
-```
-
-Set environment variables from `.env.example` in the Vercel dashboard when adding live integrations.
 
 ## Backend Documentation
 
