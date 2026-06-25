@@ -15,7 +15,7 @@ Built for the Bitget AI Hackathon.
 - Ask Alpha chat interface with suggested prompts, conversation history, typing indicator, and streaming-style responses
 - Watchlist page for BTC, ETH, SOL, ONDO, AERO, and ARB with realistic mock intelligence
 - Settings page for profile, notifications, theme, and API integration controls
-- Strongly typed mock data and service layer designed for API replacement
+- Strongly typed backend API for event detection, radar ranking, narratives, watchlist insights, and Ask Alpha chat
 
 ## Screenshots
 
@@ -45,7 +45,8 @@ Alpha Radar separates UI composition, typed domain models, mock services, local 
 
 - `src/app` contains App Router routes.
 - `src/components` contains cards, chat, common UI states, layout, providers, sections, and UI primitives.
-- `src/services` exposes the data-access boundary.
+- `src/services` exposes the frontend data-access boundary.
+- `src/server` contains the backend provider, service, AI, route, and utility layers.
 - `src/types` defines the crypto intelligence domain model.
 - `src/store` owns lightweight client UI state.
 - `src/hooks` wraps React Query access patterns.
@@ -60,6 +61,29 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Backend API
+
+The backend is implemented with Next.js API Routes and TypeScript.
+
+- `GET /api/events` returns recent standardized events.
+- `GET /api/radar` returns ranked radar signals with AI reasoning.
+- `GET /api/narratives` returns narrative clusters such as RWA, DeFi, Layer 2, Meme Coins, and Market Risk.
+- `GET /api/watchlist` returns per-asset insights for tracked assets.
+- `POST /api/chat` powers the Ask Alpha endpoint with structured JSON responses.
+
+All responses use a React Query-friendly envelope:
+
+```json
+{
+  "data": {},
+  "meta": {
+    "generatedAt": "2026-06-25T00:00:00.000Z",
+    "source": "mixed",
+    "cacheTtlSeconds": 300
+  }
+}
+```
+
 ## Environment Variables
 
 Copy `.env.example` to `.env.local` when adding real integrations:
@@ -69,9 +93,17 @@ NEXT_PUBLIC_APP_NAME=Alpha Radar
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_ENABLE_MOCK_STREAMING=true
 NEXT_PUBLIC_ANALYTICS_DISABLED=true
+AI_PROVIDER=openai
+AI_MODEL=
+OPENAI_API_KEY=
+OPENROUTER_API_KEY=
+GEMINI_API_KEY=
+DEEPSEEK_API_KEY=
+COINGECKO_API_KEY=
+CRYPTOPANIC_API_KEY=
 ```
 
-The current frontend works immediately with mock data and does not require API keys.
+The app works immediately without API keys. Missing or failing providers return realistic fallback data so the hackathon demo remains stable.
 
 ## Quality Commands
 
@@ -84,15 +116,15 @@ npm run format:check
 
 ## AI Usage Explanation
 
-The application demonstrates an AI reasoning pipeline that:
+The application implements an AI reasoning pipeline that:
 
-1. Collects market, on-chain, whale, unlock, sentiment, and news-style events.
-2. Clusters related signals by asset and catalyst.
-3. Assigns a Radar Score based on urgency, confidence, and likely impact.
-4. Generates concise explanations with supporting signals and invalidation context.
-5. Exposes the reasoning through dashboards, event detail pages, alerts, and Ask Alpha chat.
+1. Collects CoinGecko, DexScreener, CryptoPanic, Fear & Greed, and placeholder whale signals.
+2. Detects volume spikes, price anomalies, trending assets, major gainers, major losers, news spikes, and sentiment shifts.
+3. Assigns a 0-100 Radar Score from market impact, event rarity, trend strength, and AI confidence.
+4. Generates structured analysis with summary, why it matters, risk factors, confidence, and impact assessment.
+5. Groups signals into narratives and exposes them through API endpoints and Ask Alpha chat.
 
-The current implementation uses realistic mock intelligence to make the demo deterministic. The service boundary is ready for production API and model integration.
+The AI provider can switch between OpenAI, OpenRouter, Gemini, and DeepSeek via environment variables. If a model call fails, deterministic fallback reasoning keeps the API responsive.
 
 ## Future Roadmap
 
@@ -123,6 +155,14 @@ src/
     ui/
   hooks/
   lib/
+  server/
+    ai/
+    lib/
+    providers/
+    routes/
+    services/
+    types/
+    utils/
   services/
   store/
   types/
@@ -140,3 +180,10 @@ vercel
 ```
 
 Set environment variables from `.env.example` in the Vercel dashboard when adding live integrations.
+
+## Backend Documentation
+
+- [Backend architecture](docs/backend-architecture.md)
+- [API reference](docs/api-reference.md)
+- [Data providers](docs/data-providers.md)
+- [AI system](docs/ai-system.md)
